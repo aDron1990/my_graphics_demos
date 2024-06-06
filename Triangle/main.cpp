@@ -31,7 +31,7 @@ int main()
     }
     glViewport(0, 0, 800, 600);
 
-    const auto program = create_shader(std::string{vertex_code}, std::string{fragment_code}); 
+    const auto program = create_shader(std::string{vertex_code, sizeof(vertex_code)}, std::string{fragment_code, sizeof(fragment_code)}); 
     
     auto vertices = 
     {

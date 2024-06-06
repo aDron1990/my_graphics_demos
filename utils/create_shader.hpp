@@ -8,7 +8,7 @@
 
 constexpr const size_t INFO_LOG_SIZE = 1024;
 
-uint32_t create_shader(const std::string& vertex_code, std::string& fragment_code)
+uint32_t create_shader(const std::string& vertex_code, const std::string& fragment_code)
 {
     char info_log[INFO_LOG_SIZE];
     int success;

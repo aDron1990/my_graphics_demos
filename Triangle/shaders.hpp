@@ -1,4 +1,4 @@
-auto vertex_code = R"(
+const char vertex_code[] = R"(
 #version 460 core
 
 layout (location = 0) in vec2 pos;
@@ -14,7 +14,7 @@ void main()
 
 )";
 
-auto fragment_code = R"(
+const char fragment_code[] = R"(
 #version 460 core
 
 in vec3 fragColor;
