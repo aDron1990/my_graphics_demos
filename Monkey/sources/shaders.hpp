@@ -1,3 +1,5 @@
+#pragma once
+
 const char vertex_code[] = R"(
 #version 460 core
 
