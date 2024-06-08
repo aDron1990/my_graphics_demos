@@ -1,5 +1,9 @@
 # My graphics demos
-Репозиторий с моими графическими демками.
+Репозиторий с моими графическими демо-проектами.
+
+## Список демо-проектов
+* [Triangle](Triangle/README.md)
+* [Monkey](Monkey/README.md)
 
 ## Сборка:
 * Скачать репозиторий командой:
@@ -16,4 +20,5 @@ cmake --build build/
 ## Зависимости:
 * glfw
 * glm
+* assimp
 * openGL 4.6

@@ -20,7 +20,7 @@ int main()
 {
     try
     {
-        WindowPtr window = createWindow({800, 600, "Cube"});
+        WindowPtr window = createWindow({800, 600, "Monkey"});
         auto [width, height] = window->getFrameBufferSize();
         glViewport(0, 0, width, height);
 
@@ -28,7 +28,7 @@ int main()
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_POLYGON_OFFSET_LINE);
         glPolygonOffset(-0.1f, -0.1f);
-
+        glEnable(GL_DEBUG_OUTPUT);
         glDebugMessageCallback(
         [](GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei lenght, const GLchar* message, const void* userParam)
         {
@@ -84,7 +84,7 @@ int main()
         uint32_t perFrameBuffer;
         glCreateBuffers(1, &perFrameBuffer);
         glNamedBufferStorage(perFrameBuffer, sizeof(PerFrameData), nullptr, GL_DYNAMIC_STORAGE_BIT);
-        glBindBufferRange(GL_UNIFORM_BUFFER, 0, perFrameBuffer, 0, sizeof(perFrameBuffer));
+        glBindBufferRange(GL_UNIFORM_BUFFER, 0, perFrameBuffer, 0, sizeof(PerFrameData));
 
         while(!window->isClose())
         {

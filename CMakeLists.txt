@@ -27,4 +27,4 @@ add_subdirectory("utils/VertexBuffer")
 
 include_directories("./")
 add_subdirectory("Triangle/")
-add_subdirectory("Cube/")
+add_subdirectory("Monkey/")
