@@ -12,4 +12,4 @@ set_property(
 
 add_custom_command(TARGET Monkey PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   "${CMAKE_SOURCE_DIR}/resources" "${CMAKE_BINARY_DIR}/Monkey/$<CONFIG>/resources")
+                   "${CMAKE_SOURCE_DIR}/resources/Monkey" "${CMAKE_BINARY_DIR}/Monkey/$<CONFIG>/resources")
