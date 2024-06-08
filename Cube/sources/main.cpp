@@ -29,6 +29,12 @@ int main()
         glEnable(GL_POLYGON_OFFSET_LINE);
         glPolygonOffset(-0.1f, -0.1f);
 
+        glDebugMessageCallback(
+        [](GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei lenght, const GLchar* message, const void* userParam)
+        {
+            std::cout << std::string_view{message, (size_t)lenght} << std::endl;
+        }, nullptr);
+
         Shader program{vertex_code, fragment_code};
 
         const aiScene* scene = aiImportFile("resources/models/monke.gltf", aiProcess_Triangulate);
@@ -109,6 +115,8 @@ int main()
 
             window->display();
         }
+        
+        glDeleteBuffers(1, &perFrameBuffer);
         delete scene;
     }
     catch(const std::exception& e)
