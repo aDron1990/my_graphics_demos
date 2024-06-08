@@ -3,6 +3,10 @@
 #include <cassert>
 #include <stdexcept>
 
+#include <imgui.h>
+#include <backends/imgui_impl_opengl3.h>
+#include <backends/imgui_impl_glfw.h>
+
 WindowPtr createWindow(const WindowParams& params)
 {
     return std::unique_ptr<Window> { new GlfwWindow{params} };
@@ -17,6 +21,11 @@ GlfwWindow::GlfwWindow(const WindowParams& params)
     initGlfw();
     createWindow(params);
     createContext(params);
+
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGui_ImplGlfw_InitForOpenGL(windowHandlePtr.get(), true);
+    ImGui_ImplOpenGL3_Init("#version 460");
 }
 
 void GlfwWindow::checkAndSetInstance()
@@ -52,6 +61,9 @@ void GlfwWindow::createContext(const WindowParams& params)
     glfwMakeContextCurrent(windowHandlePtr.get());
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
         windowHandlePtr.reset();
         throw std::runtime_error{"Failed to create context"};
     }
@@ -59,12 +71,17 @@ void GlfwWindow::createContext(const WindowParams& params)
 
 void GlfwWindow::display() const noexcept
 {
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     glfwSwapBuffers(windowHandlePtr.get());
 }
 
 void GlfwWindow::update() const noexcept
 {
     glfwPollEvents();
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
 }
 
 bool GlfwWindow::isClose() noexcept

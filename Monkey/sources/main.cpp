@@ -20,10 +20,10 @@ int main()
 {
     try
     {
-        WindowPtr window = createWindow({800, 600, "Monkey"});
+        WindowPtr window = createWindow({1280, 720, "Monkey"});
         auto [width, height] = window->getFrameBufferSize();
-        glViewport(0, 0, width, height);
 
+        glViewport(0, 0, width, height);
         glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_POLYGON_OFFSET_LINE);
@@ -37,7 +37,7 @@ int main()
 
         Shader program{vertex_code, fragment_code};
 
-        const aiScene* scene = aiImportFile("resources/monke.gltf", aiProcess_Triangulate);
+        const aiScene* scene = aiImportFile("resources/Monkey/monke.gltf", aiProcess_Triangulate);
         if (scene == nullptr || !scene->HasMeshes())
         {
             std::cerr << "Failed to load file" << std::endl;

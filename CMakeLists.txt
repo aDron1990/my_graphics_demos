@@ -15,10 +15,13 @@ set(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF)
 set(ASSIMP_BUILD_OBJ_IMPORTER ON)
 set(ASSIMP_BUILD_GLTF_IMPORTER ON)
 
+find_package(Vulkan REQUIRED)
+
 add_subdirectory("libraries/glad")
 add_subdirectory("libraries/glfw")
 add_subdirectory("libraries/glm")
 add_subdirectory("libraries/assimp")
+add_subdirectory("libraries/imgui")
 
 add_subdirectory("utils/Window")
 add_subdirectory("utils/Shader")
