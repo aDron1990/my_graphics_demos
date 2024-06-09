@@ -37,7 +37,7 @@ int main()
 
         Shader program{vertex_code, fragment_code};
 
-        const aiScene* scene = aiImportFile("resources/Monkey/monke.gltf", aiProcess_Triangulate);
+        const aiScene* scene = aiImportFile("resources/models/monke/monke.gltf", aiProcess_Triangulate);
         if (scene == nullptr || !scene->HasMeshes())
         {
             std::cerr << "Failed to load file" << std::endl;
